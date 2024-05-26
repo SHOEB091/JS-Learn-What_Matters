@@ -16,7 +16,7 @@ let playGame = true;
 
 if (playGame) {
   submit.addEventListener('click', function (e) {
-    e.preventDefault();
+    e.preventDefault();//it cancels the event if it is cancelable , meaning thatt the default action that belongs to the event will not occur.
     const guess = parseInt(userInput.value);
     console.log(guess);
     validateGuess(guess);
@@ -32,7 +32,7 @@ function validateGuess(guess) {
     alert('PLease enter a  number less than 100');
   } else {
     prevGuess.push(guess);
-    if (numGuess === 11) {
+    if (numGuess === 10) {
       displayGuess(guess);
       displayMessage(`Game Over. Random number was ${randomNumber}`);
       endGame();
@@ -56,9 +56,11 @@ function checkGuess(guess) {
 }
 
 function displayGuess(guess) {
-  userInput.value = '';
-  guessSlot.innerHTML += `${guess}, `;
-  numGuess++;
+  userInput.value = ''; //it is used for cleanup for the input field
+
+  guessSlot.innerHTML += `${guess} , `;
+  numGuess++; //it will update the number of guesses in previous guesses array
+
   remaining.innerHTML = `${11 - numGuess} `;
 }
 
@@ -68,15 +70,32 @@ function displayMessage(message) {
 
 function endGame() {
   userInput.value = '';
-  userInput.setAttribute('disabled', '');
+
+  userInput.setAttribute('disabled', '');//This method sets a new value to an attribute if attribute not exists it will create a new attribute
+
   p.classList.add('button');
-  p.innerHTML = `<h2 id="newGame">Start new Game</h2>`;
+  p.innerHTML = `<button id="newGame">Start new Game</button>`;
+  
   startOver.appendChild(p);
   playGame = false;
+  newGame();
 }
 
 function newGame() {
+  const newgameButton = document.querySelector('#newGame');
+  newgameButton.addEventListener('click', function(e)
+{
+  playGame = true;
   randomNumber = parseInt(Math.random() * 100 + 1);
+  prevGuess = [];
+  numGuess = 1;
+  guessSlot.innerHTML = '';
+  lowOrHi.innerHTML = '';
+  remaining.innerHTML = `${11 - numGuess} `;
+  userInput.removeAttribute('disabled');
+  startOver.removeChild(p);
+});
+  /*randomNumber = parseInt(Math.random() * 100 + 1);
   prevGuess = [];
   numGuess = 1;
   guessSlot.innerHTML = '';
@@ -84,5 +103,5 @@ function newGame() {
   userInput.removeAttribute('disabled');
   startOver.removeChild(p);
 
-  playGame = true;
+  playGame = true;*/
 }
