@@ -1,6 +1,7 @@
 // ES6
 
 class User {
+    //whenever any new object is initialized constructor is called 
     constructor(username, email, password){
         this.username = username;
         this.email = email;

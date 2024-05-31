@@ -21,7 +21,7 @@ Object.prototype.hitesh = function(){
 }
 
 Array.prototype.heyHitesh = function(){
-    console.log(`Hitesh says hello`);
+    console.log(` Shoeb says hello`);
 }
 
 // heroPower.hitesh()
@@ -51,6 +51,8 @@ const TASupport = {
 }
 
 Teacher.__proto__ = User
+
+
 
 // modern syntax
 Object.setPrototypeOf(TeachingSupport, Teacher)
