@@ -18,6 +18,7 @@ const chai = {
 
 console.log(Object.getOwnPropertyDescriptor(chai, "name"));
 
+//define property is used to chnage the descriptor value 
 Object.defineProperty(chai, 'name', {
     //writable: false,
     enumerable: true,
@@ -26,6 +27,8 @@ Object.defineProperty(chai, 'name', {
 
 console.log(Object.getOwnPropertyDescriptor(chai, "name"));
 
+
+//for of is used to iterate on objects easily 
 for (let [key, value] of Object.entries(chai)) {
     if (typeof value !== 'function') {
         
